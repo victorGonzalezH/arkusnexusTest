@@ -1,0 +1,44 @@
+<div style="background-color:#2c2c2c; height: 100%;">
+    <form [formGroup]="loginFormControl" (ngSubmit)="onSubmit()">
+      <br>
+      <br>
+      <mat-form-field>
+        <mat-label style="color: white;" >Email</mat-label>
+        <input style="color: white;" matInput formControlName="emailControl" placeholder="Please enter your email">
+        <mat-error *ngIf="this.loginFormControl.controls['emailControl'].hasError('email') && !this.loginFormControl.controls['emailControl'].hasError('required')">
+          Invalid email
+        </mat-error>
+        <mat-error *ngIf="this.loginFormControl.controls['emailControl'].hasError('required')">
+          Email is required
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field>
+        <mat-label style="color: white;">Password</mat-label>
+        <input  style="color: white;"  matInput formControlName="passwordControl" [type]="hidePassword ? 'password' : 'text'" >
+        <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon >{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="this.loginFormControl.controls['passwordControl'].hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- usuario y/o contrasena incorrectos -->
+      <div *ngIf="this.loginFormControl.errors?.invalidCredentials" style="display: block; font-size: 85%; text-align: left; font-weight: 400;line-height: 1.125; font-family: Roboto, Helvetica Neue, sans-serif; letter-spacing: normal;">
+        <mat-error>
+        Check your email and/or password
+        </mat-error>
+      </div>
+      
+      <br>
+      <br>
+      
+      
+      <button mat-raised-button type="submit" [disabled]="!loginFormControl.valid">
+        <strong>Access</strong>
+      </button>
+    </form>
+</div>
+

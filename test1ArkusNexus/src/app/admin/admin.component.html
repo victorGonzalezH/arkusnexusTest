@@ -1,0 +1,23 @@
+<div style="background-color:#2c2c2c; height: 100%;">
+    <h3 style="color: white;">Users admin</h3>
+    <div [formGroup]="form">
+        <div *ngFor="let userControl of usersControls">
+            
+                <label style="color: white; width: 80%;" [attr.for]="userControl.key">{{userControl.label}}: </label>
+              
+
+                <div [ngSwitch]="userControl.controlType">
+                    <input type="email" *ngSwitchCase="'email'" style="color: white;" [formControlName]="userControl.key" [id]="userControl.key" >
+                    <input type="password" *ngSwitchCase="'password'" style="color: red;" [formControlName]="userControl.key" [id]="userControl.key" >
+                </div>
+
+                <br>
+            
+        </div>
+        <br>
+        <br>
+        <button mat-raised-button type="submit" [disabled]="!this.form.valid">
+            <strong>Add User</strong>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<mat-list>
+    <h2 style="color: white;" mat-subheader>Tasks list</h2>
+    <mat-list-item *ngFor="let task of dataSourceObs | async">
+      <mat-icon style="color: white;"  mat-list-icon>circle</mat-icon>
+      <p style="color: white;" mat-line> # {{task.position}} </p>
+      <h4  style="color: white;" mat-line>Name: {{task.name}}</h4>
+      <p style="color: white;" mat-line> Priority {{task.priority}} </p>
+      <div *ngIf="task.priority < 5" style="width: 10px; height: 10px; background-color: green; "></div>
+      <div *ngIf="task.priority > 10" style="width: 10px; height: 10px; background-color: red; "></div>
+      
+      <div *ngIf="task.priority > 5 && task.priority < 10" style="width: 10px; height: 10px; background-color: yellow; "></div>
+    </mat-list-item>
+  </mat-list>

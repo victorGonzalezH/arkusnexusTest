@@ -1,0 +1,33 @@
+<div style="background-color:#2c2c2c; height: 100%;">
+    <div style="margin-right: 8px;">
+        <a mat-button routerLink="/admin" color="warn" >Goto admin</a>
+        <a mat-button routerLink="/shared" color="warn">Go to common</a>
+
+      </div>
+    <h2 style="color: white;" >Add your tasks</h2>
+    <br>
+    <form [formGroup]="tasksFormControl" (ngSubmit)="onAddTask()">   
+        <mat-form-field>
+          <mat-label style="color: white;" >Task name</mat-label>
+          <input style="color: white;" matInput formControlName="taskControl" type="text" placeholder="Please enter a task">
+          <mat-error *ngIf="this.tasksFormControl.controls['taskControl'].hasError('required')">
+            Task is required
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label style="color: white;" >Priority</mat-label>
+            <input style="color: white;" matInput formControlName="priorityControl" type="number" placeholder="Please enter task priority">
+            <mat-error *ngIf="this.tasksFormControl.controls['priorityControl'].hasError('required')">
+              Priority is required
+            </mat-error>
+          </mat-form-field>
+          <br>
+        <button mat-raised-button type="submit" [disabled]="!this.tasksFormControl.valid">
+            <strong>Add your task now!!</strong>
+        </button>
+    </form> 
+    <br>
+    <br>
+    <app-taskslist></app-taskslist>
+</div>
